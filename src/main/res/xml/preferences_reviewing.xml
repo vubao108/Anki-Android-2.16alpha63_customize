@@ -167,18 +167,19 @@
             android:defaultValue="0"
             android:key="@string/automatic_answer_action_preference"
             android:title="@string/timeout_answer" />
-        <com.ichi2.preferences.SeekBarPreferenceCompat
-            android:defaultValue="20"
+        <com.ichi2.preferences.NumberRangePreferenceCompat
+            android:defaultValue="200"
             android:dependency="@string/timeout_answer_preference"
             android:key="@string/timeout_answer_seconds_preference"
-            android:max="30"
+            app:max="9999999"
+            app:min="1"
             android:summary="@string/timeout_answer_seconds_summ"
             android:title="@string/timeout_answer_seconds" />
-        <com.ichi2.preferences.SeekBarPreferenceCompat
-            android:defaultValue="60"
+        <com.ichi2.preferences.NumberRangePreferenceCompat
+            android:defaultValue="200"
             android:dependency="@string/timeout_answer_preference"
             android:key="@string/timeout_question_seconds_preference"
-            android:max="60"
+            android:max="9999999"
             android:summary="@string/timeout_answer_seconds_summ"
             android:title="@string/timeout_question_seconds" />
     </PreferenceCategory>

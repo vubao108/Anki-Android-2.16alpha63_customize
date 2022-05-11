@@ -170,11 +170,10 @@ class AutomaticAnswer(
     fun scheduleAutomaticDisplayAnswer(additionalDelay: Long = 0, additionalDelayQuestion: Long = 0, moreDelay: Long =3000L) {
         if (!settings.useTimer) return
         if (!settings.autoAdvanceAnswer) return
-        if(settings.answerDelayMilliseconds == 1000L || settings.answerDelayMilliseconds == 2000L
-                || settings.answerDelayMilliseconds == 3000L
+        if(settings.answerDelayMilliseconds >= 100000L
         )
         {
-            val delayTime = additionalDelayQuestion + moreDelay + settings.answerDelayMilliseconds/1000 * additionalDelay
+            val delayTime = additionalDelayQuestion + moreDelay + settings.answerDelayMilliseconds/100000 * additionalDelay
             Timber.d("delayedShowAnswer :" + delayTime )
             delayedShowAnswer(delayTime)
 
@@ -191,11 +190,10 @@ class AutomaticAnswer(
     fun scheduleAutomaticDisplayQuestion(additionalMediaDelay: Long = 0, moreDelay: Long=3000L) {
         if (!settings.useTimer) return
         if (!settings.autoAdvanceQuestion) return
-        if(settings.questionDelayMilliseconds == 1000L || settings.questionDelayMilliseconds == 2000L
-                || settings.questionDelayMilliseconds == 3000L
+        if(settings.questionDelayMilliseconds >= 100 * 1000L
         )
         {
-            val delayTime = moreDelay +  settings.questionDelayMilliseconds/1000 * additionalMediaDelay
+            val delayTime = additionalMediaDelay + moreDelay +  settings.questionDelayMilliseconds/100000 * additionalMediaDelay
             Timber.d("delayedShowQuestion " + delayTime)
             delayedShowQuestion(delayTime)
         }else{
