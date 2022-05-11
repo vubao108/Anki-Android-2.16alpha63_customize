@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2009 Nicolas Raoul <nicolas.raoul@gmail.com>
+~ Copyright (c) 2009 Edu Zamora <edu.zasu@gmail.com>
+~ Copyright (c) 2009 Jordi Chacon <jordi.chacon@gmail.com>
+~ Copyright (c) 2011 Norbert Nagold <norbert.nagold@gmail.com>
+~ Copyright (c) 2012 Kostas Spyropoulos <inigo.aldana@gmail.com>
+~ Copyright (c) 2014 Timothy Rae <perceptualchaos2@gmail.com>
+~
+~ This program is free software; you can redistribute it and/or modify it under
+~ the terms of the GNU General Public License as published by the Free Software
+~ Foundation; either version 3 of the License, or (at your option) any later
+~ version.
+~
+~ This program is distributed in the hope that it will be useful, but WITHOUT ANY
+~ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+~ PARTICULAR PURPOSE. See the GNU General Public License for more details.
+~
+~ You should have received a copy of the GNU General Public License along with
+~ this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!-- Advanced Preferences -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://arbitrary.app.namespace/com.ichi2.anki"
+    android:title="@string/pref_cat_advanced"
+    android:summary="@string/pref_cat_advanced_summ"
+    android:key="pref_screen_advanced">
+        <EditTextPreference
+            android:defaultValue="/sdcard/AnkiDroid"
+            android:key="deckPath"
+            android:summary="@string/preference_summary_literal"
+            android:title="@string/col_path" />
+        <com.ichi2.preferences.ConfirmationPreferenceCompat
+            android:key="force_full_sync"
+            android:title="@string/force_full_sync_title"
+            android:summary="@string/force_full_sync_summary" />
+        <Preference
+            android:key="custom_sync_server_link"
+            android:title="@string/custom_sync_server_title"
+            android:fragment="com.ichi2.anki.Preferences$CustomSyncServerSettingsFragment" />
+        <PreferenceCategory android:title="@string/pref_cat_performance" >
+            <com.ichi2.preferences.IncrementerNumberRangePreferenceCompat
+                android:defaultValue="8"
+                android:key="backupMax"
+                android:summary="@string/preference_summary_literal"
+                android:title="@string/pref_backup_max"
+                app:min="0"
+                app:max="99" />
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:key="category_workarounds"
+            android:title="@string/pref_cat_workarounds" >
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="softwareRender"
+                android:summary="@string/software_render_summ"
+                android:title="@string/software_render" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="safeDisplay"
+                android:summary="@string/safe_display_summ"
+                android:title="@string/safe_display" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="useInputTag"
+                android:disableDependentsState="true"
+                android:summary="@string/use_input_tag_summ"
+                android:title="@string/use_input_tag" />
+            <!-- Workaround for #5533 -->
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="disableExtendedTextUi"
+                android:summary="@string/disable_extended_text_ui_summ"
+                android:title="@string/disable_extended_text_ui" />
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="noteEditorNewlineReplace"
+                android:summary="@string/note_editor_replace_newlines_summ"
+                android:title="@string/note_editor_replace_newlines"
+                />
+            <!-- #7896 - Workaround for old webviews which could not render some characters in a <code> block
+            due to problems with the default monospace font handling -->
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="noCodeFormatting"
+                android:summary="@string/no_code_formatting_summ"
+                android:title="@string/no_code_formatting" />
+            <!-- #8424 - allow users to decide if they want to focus the EditText
+                Note: this functionality is already disabled if useInputTag is enabled
+                UseInputTag: has had `disableDependentsState` set, so this is disabled
+                if useInputTag is true
+             -->
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="autoFocusTypeInAnswer"
+                android:summary="@string/type_in_answer_focus_summ"
+                android:dependency="useInputTag"
+                android:title="@string/type_in_answer_focus" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="exitViaDoubleTapBack"
+                android:summary="@string/exit_via_double_tap_back_summ"
+                android:title="@string/exit_via_double_tap_back" />
+            <!-- #9639 - allow all files in media selection dialog - .opus is application/octet-stream
+            in older versions of Android (fixed between API 26 and API 30)
+             We don't want to allow this by default, but we want an override -->
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="mediaImportAllowAllFiles"
+                android:summary="@string/media_import_allow_all_files_summ"
+                android:title="@string/media_import_allow_all_files" />
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:key="category_plugins"
+            android:title="@string/pref_cat_plugins" >
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="providerEnabled"
+                android:summary="@string/enable_api_summary"
+                android:title="@string/enable_api_title"/>
+            <Preference
+                android:key="thirdpartyapps_link"
+                android:summary="@string/thirdparty_apps_summary"
+                android:title="@string/thirdparty_apps_title">
+            </Preference>
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="tts"
+                android:summary="@string/tts_summ"
+                android:title="@string/tts" />
+            <com.ichi2.preferences.ResetLanguageDialogPreference
+                android:dialogIcon="@drawable/ic_warning_black"
+                android:dialogMessage="@string/reset_languages_question"
+                android:dialogTitle="@string/reset_languages"
+                android:negativeButtonText="@string/dialog_cancel"
+                android:positiveButtonText="@string/dialog_ok"
+                android:summary="@string/reset_languages_summ"
+                android:title="@string/reset_languages"
+                android:key="resetLanguages" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="convertFenText"
+                android:summary="@string/convert_fen_text_summ"
+                android:title="@string/convert_fen_text" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="scrolling_buttons"
+                android:summary="@string/more_scrolling_buttons_summ"
+                android:title="@string/more_scrolling_buttons" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="double_scrolling"
+                android:summary="@string/double_scrolling_gap_summ"
+                android:title="@string/double_scrolling_gap" />
+            <ListPreference
+                android:entries="@array/stats_default_deck_labels"
+                android:entryValues="@array/stats_default_deck_values"
+                android:key="stats_default_deck"
+                android:title="@string/stats_default_deck_title"
+                android:defaultValue="current" />
+            <Preference
+                android:key="advanced_statistics_link"
+                android:title="@string/advanced_statistics_title"
+                android:fragment="com.ichi2.anki.Preferences$AdvancedStatisticsSettingsFragment" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="html_javascript_debugging"
+                android:summary="@string/html_javascript_debugging_summ"
+                android:title="@string/html_javascript_debugging"/>
+            <!-- Title and summary are variable, handled in string:
+            card_browser_enable_external_context_menu -->
+            <SwitchPreference
+                android:id="@+id/card_browser_external_context_menu"
+                android:defaultValue="false"
+                android:key="card_browser_enable_external_context_menu"/>
+            <SwitchPreference
+                android:id="@+id/anki_card_external_context_menu"
+                android:defaultValue="true"
+                android:key="anki_card_enable_external_context_menu"/>
+        </PreferenceCategory>
+
+
+    <Preference
+        android:key="about_dialog_preference"
+        android:title="@string/about_title">
+        <intent
+            android:targetPackage="com.ichi2.anki"
+            android:targetClass="com.ichi2.anki.Info"/>
+    </Preference>
+</PreferenceScreen>

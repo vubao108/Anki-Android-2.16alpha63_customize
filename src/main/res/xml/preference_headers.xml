@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2015 Timothy Rae <perceptualchaos2@gmail.com>
+~
+~ This program is free software; you can redistribute it and/or modify it under
+~ the terms of the GNU General Public License as published by the Free Software
+~ Foundation; either version 3 of the License, or (at your option) any later
+~ version.
+~
+~ This program is distributed in the hope that it will be useful, but WITHOUT ANY
+~ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+~ PARTICULAR PURPOSE. See the GNU General Public License for more details.
+~
+~ You should have received a copy of the GNU General Public License along with
+~ this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  General Preferences -->
+    <Preference
+        android:fragment="com.ichi2.anki.Preferences$GeneralSettingsFragment"
+        android:summary="@string/pref_cat_general_summ"
+        android:title="@string/app_name">
+    </Preference>
+
+    <!-- Reviewing Preferences -->
+    <Preference
+        android:fragment="com.ichi2.anki.Preferences$ReviewingSettingsFragment"
+        android:summary="@string/pref_cat_reviewing_summ"
+        android:title="@string/pref_cat_reviewing">
+    </Preference>
+
+    <!-- Appearance Preferences  -->
+    <Preference
+        android:fragment="com.ichi2.anki.Preferences$AppearanceSettingsFragment"
+        android:key="appearance_preference_group"
+        android:summary="@string/pref_cat_appearance_summ"
+        android:title="@string/pref_cat_appearance">
+    </Preference>
+
+    <!-- Navigation Preferences -->
+    <Preference
+        android:fragment="com.ichi2.anki.Preferences$GesturesSettingsFragment"
+        android:summary="@string/pref_cat_gestures_summ"
+        android:title="@string/pref_cat_gestures">
+    </Preference>
+
+    <!-- Keybinding preferences -->
+    <Preference
+        android:fragment="com.ichi2.anki.Preferences$ControlsSettingsFragment"
+        android:summary="@string/pref_cat_controls_summ"
+        android:title="@string/pref_cat_controls">
+    </Preference>
+
+    <!-- Advanced Preferences -->
+    <Preference
+        android:fragment="com.ichi2.anki.Preferences$AdvancedSettingsFragment"
+        android:key="pref_screen_advanced"
+        android:summary="@string/pref_cat_advanced_summ"
+        android:title="@string/pref_cat_advanced">
+    </Preference>
+</PreferenceScreen>
