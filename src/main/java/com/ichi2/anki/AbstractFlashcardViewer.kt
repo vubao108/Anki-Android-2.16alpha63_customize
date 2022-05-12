@@ -1325,7 +1325,10 @@ abstract class AbstractFlashcardViewer :
         mAutomaticAnswer.onDisplayQuestion()
         // If Card-based TTS is enabled, we "automatic display" after the TTS has finished as we don't know the duration
         if (!mTTS.enabled) {
-            mAutomaticAnswer.scheduleAutomaticDisplayAnswer(mUseTimerDynamicMS, mUseTimerDynamicMSQuestion)
+            val currentFlag = mCurrentCard!!.userFlag()
+            mAutomaticAnswer.scheduleAutomaticDisplayAnswer(mUseTimerDynamicMS, mUseTimerDynamicMSQuestion,
+                3000L, currentFlag
+            )
         }
         Timber.i("AbstractFlashcardViewer:: Question successfully shown for card id %d", mCurrentCard!!.id)
     }
@@ -1367,7 +1370,8 @@ abstract class AbstractFlashcardViewer :
         mAutomaticAnswer.onDisplayAnswer()
         // If Card-based TTS is enabled, we "automatic display" after the TTS has finished as we don't know the duration
         if (!mTTS.enabled) {
-            mAutomaticAnswer.scheduleAutomaticDisplayQuestion(mUseTimerDynamicMS)
+            val flag = mCurrentCard!!.userFlag()
+            mAutomaticAnswer.scheduleAutomaticDisplayQuestion(mUseTimerDynamicMS,3000, flag)
         }
     }
 

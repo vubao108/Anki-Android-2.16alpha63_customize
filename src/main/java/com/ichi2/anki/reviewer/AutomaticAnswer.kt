@@ -167,15 +167,21 @@ class AutomaticAnswer(
      * after a user-specified duration, plus an additional delay for media
      */
     @JvmOverloads
-    fun scheduleAutomaticDisplayAnswer(additionalDelay: Long = 0, additionalDelayQuestion: Long = 0, moreDelay: Long =3000L) {
+    fun scheduleAutomaticDisplayAnswer(additionalDelay: Long = 0, additionalDelayQuestion: Long = 0, moreDelay: Long =3000L, flag:Int = 0) {
         if (!settings.useTimer) return
         if (!settings.autoAdvanceAnswer) return
         if(settings.answerDelayMilliseconds >= 100000L
         )
         {
-            val delayTime = additionalDelayQuestion + moreDelay + settings.answerDelayMilliseconds/100000 * additionalDelay
+            var percentToDelay : Double
+            if(flag == 7){
+                percentToDelay = (settings.answerDelayMillisecondsFlag7.toDouble()/100000).toDouble()
+            }else{
+                percentToDelay = (settings.answerDelayMilliseconds.toDouble()/100000).toDouble()
+            }
+            val delayTime = additionalDelayQuestion + moreDelay + percentToDelay * additionalDelay
             Timber.d("delayedShowAnswer :" + delayTime )
-            delayedShowAnswer(delayTime)
+            delayedShowAnswer(delayTime.toLong())
 
         }else{
             delayedShowAnswer(settings.answerDelayMilliseconds + additionalDelay + additionalDelayQuestion)
@@ -187,15 +193,21 @@ class AutomaticAnswer(
      * after a user-specified duration, plus an additional delay for media
      */
     @JvmOverloads
-    fun scheduleAutomaticDisplayQuestion(additionalMediaDelay: Long = 0, moreDelay: Long=3000L) {
+    fun scheduleAutomaticDisplayQuestion(additionalMediaDelay: Long = 0, moreDelay: Long=3000L, flag: Int=0) {
         if (!settings.useTimer) return
         if (!settings.autoAdvanceQuestion) return
         if(settings.questionDelayMilliseconds >= 100 * 1000L
         )
         {
-            val delayTime = additionalMediaDelay + moreDelay +  settings.questionDelayMilliseconds/100000 * additionalMediaDelay
+            var percentDelay : Double
+            if(flag == 7){
+                percentDelay = settings.questionDelayMillisecondsFlag7.toDouble() / 100000
+            }else{
+                percentDelay = settings.questionDelayMilliseconds.toDouble()/ 100000
+            }
+            val delayTime = additionalMediaDelay + moreDelay +  percentDelay * additionalMediaDelay
             Timber.d("delayedShowQuestion " + delayTime)
-            delayedShowQuestion(delayTime)
+            delayedShowQuestion(delayTime.toLong())
         }else{
             delayedShowQuestion(settings.questionDelayMilliseconds + additionalMediaDelay)
         }
@@ -247,11 +259,15 @@ class AutomaticAnswerSettings(
     val answerAction: AutomaticAnswerAction = AutomaticAnswerAction.BURY_CARD,
     @get:JvmName("useTimer") val useTimer: Boolean = false,
     private val questionDelaySeconds: Int = 60,
-    private val answerDelaySeconds: Int = 20
+    private val answerDelaySeconds: Int = 20,
+    private  val answerDelaySecondsFlag7: Int = 200,
+    private  val questionDelaySecondsFlag7: Int = 200
 ) {
 
     val questionDelayMilliseconds = questionDelaySeconds * 1000L
     val answerDelayMilliseconds = answerDelaySeconds * 1000L
+    val answerDelayMillisecondsFlag7 = answerDelaySecondsFlag7 * 1000L
+    val questionDelayMillisecondsFlag7 = questionDelaySecondsFlag7 * 1000L
 
     // a wait of zero means auto-advance is disabled
     val autoAdvanceAnswer; get() = answerDelaySeconds > 0
@@ -285,7 +301,10 @@ class AutomaticAnswerSettings(
             val useTimer = revOptions.optBoolean("timeoutAnswer", false)
             val waitQuestionSecond = revOptions.optInt("timeoutQuestionSeconds", 60)
             val waitAnswerSecond = revOptions.optInt("timeoutAnswerSeconds", 20)
-            return AutomaticAnswerSettings(action, useTimer, waitQuestionSecond, waitAnswerSecond)
+            val waitAnswerSecondFlag7 = revOptions.optInt("timeoutAnswerSecondsFlag7", 20)
+            val waitQuestionSecondFlag7 = revOptions.optInt("timeoutQuestionSecondsFlag7", 60)
+
+            return AutomaticAnswerSettings(action, useTimer, waitQuestionSecond, waitAnswerSecond,waitAnswerSecondFlag7,waitQuestionSecondFlag7)
         }
 
         @JvmStatic
@@ -293,7 +312,10 @@ class AutomaticAnswerSettings(
             val prefUseTimer: Boolean = preferences.getBoolean("timeoutAnswer", false)
             val prefWaitQuestionSecond: Int = preferences.getInt("timeoutQuestionSeconds", 60)
             val prefWaitAnswerSecond: Int = preferences.getInt("timeoutAnswerSeconds", 20)
-            return AutomaticAnswerSettings(action, prefUseTimer, prefWaitQuestionSecond, prefWaitAnswerSecond)
+            val prefWaitAnswerSecondFlag7: Int = preferences.getInt("timeoutAnswerSecondsFlag7", 20)
+            val prefWaitQuestionSecondFlag7: Int = preferences.getInt("timeoutQuestionSecondsFlag7", 20)
+
+            return AutomaticAnswerSettings(action, prefUseTimer, prefWaitQuestionSecond, prefWaitAnswerSecond,prefWaitAnswerSecondFlag7,prefWaitQuestionSecondFlag7)
         }
 
         @JvmStatic

@@ -182,5 +182,19 @@
             android:max="9999999"
             android:summary="@string/timeout_answer_seconds_summ"
             android:title="@string/timeout_question_seconds" />
+        <com.ichi2.preferences.NumberRangePreferenceCompat
+            android:defaultValue="300"
+            android:dependency="@string/timeout_answer_preference"
+            android:key="@string/timeout_answer_seconds_preference_flag7"
+            android:max="9999999"
+            android:summary="@string/timeout_answer_seconds_summ"
+            android:title="@string/timeout_answer_seconds_flag7" />
+        <com.ichi2.preferences.NumberRangePreferenceCompat
+            android:defaultValue="200"
+            android:dependency="@string/timeout_answer_preference"
+            android:key="@string/timeout_question_seconds_preference_flag7"
+            android:max="9999999"
+            android:summary="@string/timeout_answer_seconds_summ"
+            android:title="@string/timeout_question_seconds_flag7" />
     </PreferenceCategory>
 </PreferenceScreen>

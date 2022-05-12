@@ -135,6 +135,8 @@
     <string name="timeout_answer_seconds" maxLength="41">Time to show answer</string>
     <string name="timeout_answer_seconds_summ" comment="The time to wait (in seconds) in the reviewer before automatically showing the next question or answer">XXX %</string>
     <string name="timeout_question_seconds" maxLength="41">Time to show next question</string>
+    <string name="timeout_answer_seconds_flag7" maxLength="41">Time to show answer flag 7</string>
+    <string name="timeout_question_seconds_flag7" maxLength="41">Time to show next question flag7</string>
     <string name="select_locale_title">Select language</string>
     <string name="software_render" maxLength="41">Disable card hardware render</string>
     <string name="software_render_summ">Hardware render is faster but may have problems, specifically on Android 8/8.1. If you cannot see parts of the card review user interface, try this setting.</string>
