@@ -28,6 +28,12 @@
         ankidroid:actionProviderClass="com.ichi2.ui.RtlCompliantActionProvider"
         ankidroid:showAsAction="always"/>
     <item
+        android:id="@+id/action_stop"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_stop_24"
+        android:title="@string/stop"
+        ankidroid:showAsAction="always"/>
+    <item
         android:id="@+id/action_flag"
         android:title="@string/menu_flag_card"
         android:icon="@drawable/ic_flag_transparent"

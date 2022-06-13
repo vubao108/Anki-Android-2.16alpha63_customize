@@ -604,7 +604,10 @@ abstract class AbstractFlashcardViewer :
         // Prevent loss of data in Cookies
         CookieManager.getInstance().flush()
     }
-
+    fun stopAutoDisplayAnswer(){
+        mAutomaticAnswer.disable()
+        mAutomaticAnswer.enable()
+    }
     override fun onResume() {
         super.onResume()
         // Set the context for the Sound manager

@@ -364,6 +364,11 @@ open class Reviewer : AbstractFlashcardViewer() {
                     undo()
                 }
             }
+            R.id.action_stop->{
+                Timber.i("Reviewer:: stop auto answer press")
+                stopAutoDisplayAnswer()
+                showThemedToast(this@Reviewer,"stoped auto answer",true)
+            }
             R.id.action_reset_card_progress -> {
                 Timber.i("Reviewer:: Reset progress button pressed")
                 showResetCardDialog()
