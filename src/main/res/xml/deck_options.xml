@@ -157,19 +157,33 @@
                     android:summary="@string/timeout_answer_summ"
                     android:title="@string/timeout_answer_text" />
                 <com.ichi2.ui.SeekBarPreference
-                    android:defaultValue="20"
+                    android:defaultValue="120"
                     android:dependency="revTimeoutAnswer"
                     android:key="revTimeoutAnswerSeconds"
-                    android:max="30"
+                    android:max="300"
                     android:summary="@string/timeout_answer_seconds_summ"
                     android:title="@string/timeout_answer_seconds" />
                 <com.ichi2.ui.SeekBarPreference
-                    android:defaultValue="60"
+                    android:defaultValue="100"
                     android:dependency="revTimeoutAnswer"
                     android:key="revTimeoutQuestionSeconds"
-                    android:max="60"
+                    android:max="300"
                     android:summary="@string/timeout_answer_seconds_summ"
                     android:title="@string/timeout_question_seconds" />
+                <com.ichi2.ui.SeekBarPreference
+                    android:defaultValue="120"
+                    android:dependency="revTimeoutAnswer"
+                    android:key="revTimeoutAnswerSecondsFlag7"
+                    android:max="300"
+                    android:summary="@string/timeout_answer_seconds_summ"
+                    android:title="@string/timeout_answer_seconds_flag7" />
+                <com.ichi2.ui.SeekBarPreference
+                    android:defaultValue="100"
+                    android:dependency="revTimeoutAnswer"
+                    android:key="revTimeoutQuestionSecondsFlag7"
+                    android:max="300"
+                    android:summary="@string/timeout_answer_seconds_summ"
+                    android:title="@string/timeout_question_seconds_flag7" />
             </PreferenceCategory>
         </PreferenceScreen>
         <PreferenceScreen android:title="@string/deck_conf_lps_cards" >

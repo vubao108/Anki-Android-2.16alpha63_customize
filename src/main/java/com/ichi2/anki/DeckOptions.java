@@ -143,6 +143,9 @@ public class DeckOptions extends AppCompatPreferenceActivity implements OnShared
                 mValues.put("revTimeoutAnswer", Boolean.toString(revOptions.optBoolean("timeoutAnswer", false)));
                 mValues.put("revTimeoutAnswerSeconds", Integer.toString(revOptions.optInt("timeoutAnswerSeconds", 6)));
                 mValues.put("revTimeoutQuestionSeconds", Integer.toString(revOptions.optInt("timeoutQuestionSeconds", 60)));
+                mValues.put("revTimeoutAnswerSecondsFlag7", Integer.toString(revOptions.optInt("timeoutAnswerSecondsFlag7", 6)));
+                mValues.put("revTimeoutQuestionSecondsFlag7", Integer.toString(revOptions.optInt("timeoutQuestionSecondsFlag7", 60)));
+
 
                 // lapse
                 JSONObject lapOptions = mOptions.getJSONObject("lapse");
@@ -273,6 +276,12 @@ public class DeckOptions extends AppCompatPreferenceActivity implements OnShared
                                 break;
                             case "revTimeoutQuestionSeconds":
                                 mOptions.getJSONObject("rev").put("timeoutQuestionSeconds", value);
+                                break;
+                            case "revTimeoutAnswerSecondsFlag7":
+                                mOptions.getJSONObject("rev").put("timeoutAnswerSecondsFlag7", value);
+                                break;
+                            case "revTimeoutQuestionSecondsFlag7":
+                                mOptions.getJSONObject("rev").put("timeoutQuestionSecondsFlag7", value);
                                 break;
                             case "lapMinIvl":
                                 mOptions.getJSONObject("lapse").put("minInt", value);

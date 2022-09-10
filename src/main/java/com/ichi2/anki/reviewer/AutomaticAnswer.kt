@@ -170,7 +170,7 @@ class AutomaticAnswer(
     fun scheduleAutomaticDisplayAnswer(additionalDelay: Long = 0, additionalDelayQuestion: Long = 0, moreDelay: Long =3000L, flag:Int = 0) {
         if (!settings.useTimer) return
         if (!settings.autoAdvanceAnswer) return
-        if(settings.answerDelayMilliseconds >= 100000L
+        if(settings.answerDelayMilliseconds >= 0L
         )
         {
             var percentToDelay : Double
@@ -196,7 +196,7 @@ class AutomaticAnswer(
     fun scheduleAutomaticDisplayQuestion(additionalMediaDelay: Long = 0, moreDelay: Long=3000L, flag: Int=0) {
         if (!settings.useTimer) return
         if (!settings.autoAdvanceQuestion) return
-        if(settings.questionDelayMilliseconds >= 100 * 1000L
+        if(settings.questionDelayMilliseconds >= 0L
         )
         {
             var percentDelay : Double
